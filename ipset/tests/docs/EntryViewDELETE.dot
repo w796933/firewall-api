@@ -1,0 +1,19 @@
+digraph {
+    label="EntryView DELETE";
+
+    DELETE[shape="invhouse"];
+
+    200[shape="house"];
+    400[shape="house"];
+    404[shape="house"];
+
+    purge_and_delete_entry[shape="box"];
+
+    DELETE -> is_entry;
+
+    is_entry -> purge_and_delete_entry[label="yes"];
+    is_entry -> 404[label="no"];
+
+    purge_and_delete_entry -> 200[label="yes"];
+    purge_and_delete_entry -> 400[label="no"];
+}

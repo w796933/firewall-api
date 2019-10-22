@@ -1,0 +1,24 @@
+digraph {
+    label="InputAcceptView DELETE";
+
+    DELETE[shape="invhouse"];
+
+    check_ipv4_rule[shape="box"];
+    check_ipv6_rule[shape="box"];
+    delete_ipv4_rule[shape="box"];
+    delete_ipv6_rule[shape="box"];
+
+    200[shape="house"];
+
+    DELETE -> check_ipv4_rule;
+
+    check_ipv4_rule -> delete_ipv4_rule[label="yes"];
+    check_ipv4_rule -> check_ipv6_rule[label="no"];
+
+    delete_ipv4_rule -> check_ipv6_rule;
+
+    check_ipv6_rule -> delete_ipv6_rule[label="yes"];
+    check_ipv6_rule -> 200[label="no"];
+
+    delete_ipv6_rule -> 200;
+}

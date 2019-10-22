@@ -1,0 +1,35 @@
+digraph {
+    label="InputAcceptView validation";
+
+    request[shape="invhouse"];
+
+    check_transport[shape="box"];
+    check_start_port[shape="box"];
+    check_start_port_range[shape="box"];
+    check_end_port_range[shape="box"];
+
+    METHOD[shape="house"];
+    400[shape="house"];
+
+    request -> check_transport;
+
+    check_transport -> is_tcp_or_udp[label="yes"]
+    check_transport -> 400[label="no"];
+
+    is_tcp_or_udp -> check_start_port;
+
+    check_start_port -> is_start_port_low[label="yes"];
+    check_start_port -> 400[label="no"];
+
+    is_start_port_low -> check_start_port_range;
+
+    check_start_port_range -> is_start_port_range[label="yes"];
+    check_start_port_range -> 400[label="no"];
+
+    is_start_port_range -> check_end_port_range;
+
+    check_end_port_range -> is_end_port_high[label="yes"];
+    check_end_port_range -> 400[label="no"];
+
+    is_end_port_high -> METHOD;
+}
