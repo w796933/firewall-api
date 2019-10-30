@@ -15,22 +15,22 @@ with open(os.path.join(BASE_DIR, 'var', 'settings.py')) as settings_file:
 
 SECRET_KEY = SETTINGS['SECRET_KEY']
 
+ADMINS = SETTINGS['ADMINS']
+
+IPSETS = SETTINGS['IPSETS']
+
+SERVER_EMAIL = SETTINGS['SERVER_EMAIL']
+
+TIME_ZONE = SETTINGS['TIME_ZONE']
+
 
 # Other custom vars
 
-ADMINS = SETTINGS.get('ADMINS') or (('Host admin', 'root@localhost'),)
-
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
-DEBUG = SETTINGS.get('DEBUG') or False
-
-IPSETS = SETTINGS.get('IPSETS') or {}
+DEBUG = False
 
 EMAIL_SUBJECT_PREFIX = '[firewall] '
-
-SERVER_EMAIL = SETTINGS.get('SERVER_EMAIL') or 'root@localhost'
-
-TIME_ZONE = SETTINGS.get('TIME_ZONE') or 'UTC'
 
 
 # Application definition
