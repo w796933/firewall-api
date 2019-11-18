@@ -1,4 +1,5 @@
 """ Test module for SetView PUT. """
+from django.core import mail
 from ipset.models import Entry
 from ipset.tests.base import IpsetTestCase
 from ipset import libipset
@@ -35,7 +36,8 @@ class SetViewPutTestCase(IpsetTestCase):
                 data={'entry': entry_id, 'set': bad_set},
             )
             self.assertEqual(response.status_code, 400)
-            self.assertEqual(response.content, b'Bad set')
+            self.assertEqual(response.context['exception_value'], 'Bad set')
+            self.assertTrue('Bad set' in mail.outbox[0].subject)
 
     def test_ipv4_entry(self):
         """ Assert that PUT adds the address to the IPv4 ipset. """

@@ -1,4 +1,5 @@
 """ Test module for EntryView PUT. """
+from django.core import mail
 from ipset.models import Entry
 from ipset.tests.base import IpsetTestCase
 from ipset import libipset
@@ -36,7 +37,8 @@ class EntryViewPutTestCase(IpsetTestCase):
             data={'entry': 'snork', 'address': 'snork'},
         )
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.content, b'Bad address')
+        self.assertEqual(response.context['exception_value'], 'Bad address')
+        self.assertTrue('Bad address' in mail.outbox[0].subject)
 
     def test_update_ipv4_address(self):
         """ Assert expiry replaces address and advances expiry on re-PUT. """

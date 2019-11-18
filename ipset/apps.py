@@ -1,6 +1,5 @@
 """ Ipset app config module. """
 from django.apps import AppConfig
-from django.db.utils import OperationalError
 
 
 class IpsetConfig(AppConfig):
@@ -16,10 +15,7 @@ class IpsetConfig(AppConfig):
 
         try:
             sync()
-        except OperationalError:
-            # TODO When the app starts but there aren't yet any migrations.
-            pass
         except ValueError as err:
             import logging
-            logging.getLogger('django.ipset').error('Sync on ready failed')
+            logging.getLogger('django.ipset').error(str(err))
             logging.getLogger('django.server').error(str(err))

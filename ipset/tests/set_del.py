@@ -1,4 +1,5 @@
 """ Test module for SetView DELETE. """
+from django.core import mail
 from ipset.models import Entry
 from ipset.tests.base import IpsetTestCase, TwoIpsetTestCase
 from ipset import libipset
@@ -35,7 +36,8 @@ class SetViewDeleteTestCase(IpsetTestCase):
                 data={'entry': entry_id, 'set': bad_set},
             )
             self.assertEqual(response.status_code, 400)
-            self.assertEqual(response.content, b'Bad set')
+            self.assertEqual(response.context['exception_value'], 'Bad set')
+            self.assertTrue('Bad set' in mail.outbox[0].subject)
 
     def test_delete_entry(self):
         """ Assert that DELETE of of last set deletes entry record. """
@@ -63,6 +65,7 @@ class SetViewDeleteTestCase(IpsetTestCase):
                 Entry.objects.get(entry_id=entry_id)
 
 
+# pylint: disable=too-many-ancestors
 class SetViewDeleteTwoIpsetTestCase(TwoIpsetTestCase):
     """ Validate set view DELETE with more than one ipset. """
 
@@ -96,7 +99,8 @@ class SetViewDeleteTwoIpsetTestCase(TwoIpsetTestCase):
                 data={'entry': entry_id, 'set': self.setname_b},
             )
             self.assertEqual(response.status_code, 400)
-            self.assertEqual(response.content, b'Bad entry')
+            self.assertEqual(response.context['exception_value'], 'Bad entry')
+            self.assertTrue('Bad entry' in mail.outbox[0].subject)
 
     def test_delete_entry(self):
         """ Assert that DELETE of of last set deletes entry record. """

@@ -1,7 +1,8 @@
 """ IP set views module. """
 import json
 from django import forms
-from django.http import Http404, HttpResponseBadRequest, JsonResponse
+from django.core.exceptions import SuspiciousOperation
+from django.http import Http404, JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import View
@@ -77,21 +78,23 @@ class EntryView(View):
         except Entry.DoesNotExist:
             raise Http404
 
+    # pylint: disable=unused-argument
     def delete(self, request, *args, **kwargs):
         """ DELETE an entry. """
         try:
             self._purge_and_delete(request)
             return JsonResponse({}, **kwargs)
         except ValueError as err:
-            return HttpResponseBadRequest(str(err))
+            raise SuspiciousOperation(str(err))
 
+    # pylint: disable=unused-argument
     def put(self, request, *args, **kwargs):
         """ PUT an entry and its address. """
         try:
             self._create_or_update(request)
             return JsonResponse({}, **kwargs)
         except ValueError as err:
-            return HttpResponseBadRequest(str(err))
+            raise SuspiciousOperation(str(err))
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -122,6 +125,7 @@ class SetView(View):
             raise ValueError('Bad set')
         return entry, _set
 
+    # pylint: disable=unused-argument
     def delete(self, request, *args, **kwargs):
         """ Remove an entry from a set. """
         try:
@@ -135,8 +139,9 @@ class SetView(View):
             # Don't advance entry expiry if the entry still exists.
             return JsonResponse({}, **kwargs)
         except ValueError as err:
-            return HttpResponseBadRequest(str(err))
+            raise SuspiciousOperation(str(err))
 
+    # pylint: disable=unused-argument
     def put(self, request, *args, **kwargs):
         """ Add an entry to a set. """
         try:
@@ -146,4 +151,4 @@ class SetView(View):
             entry.advance()
             return JsonResponse({}, **kwargs)
         except ValueError as err:
-            return HttpResponseBadRequest(str(err))
+            raise SuspiciousOperation(str(err))
