@@ -4,28 +4,26 @@
 #
 #    pip-compile requirements-dev.in
 #
-astroid==2.3.2            # via pylint
-certifi==2019.9.11        # via requests
-chardet==3.0.4            # via requests
-django==2.2.6
+astroid==2.3.3            # via pylint
+django==2.2.7
 entrypoints==0.3          # via flake8
-flake8==3.7.8
+flake8==3.7.9
 freezegun==0.3.12
-gunicorn==19.9.0
-idna==2.8                 # via requests
+gunicorn==20.0.0
 isort==4.3.21             # via pylint
-lazy-object-proxy==1.4.2  # via astroid
+lazy-object-proxy==1.4.3  # via astroid
 mccabe==0.6.1             # via flake8, pylint
 pycodestyle==2.5.0        # via flake8
 pyflakes==2.1.1           # via flake8
-pylint-django==2.0.11
+pylint-django==2.0.12
 pylint-plugin-utils==0.6  # via pylint-django
-pylint==2.4.3
-python-dateutil==2.8.0    # via freezegun
+pylint==2.4.4
+python-dateutil==2.8.1    # via freezegun
 pytz==2019.3              # via django
-requests==2.22.0
-six==1.12.0               # via astroid, freezegun, python-dateutil
+six==1.13.0               # via astroid, freezegun, python-dateutil
 sqlparse==0.3.0           # via django
 typed-ast==1.4.0          # via astroid
-urllib3==1.25.6           # via requests
 wrapt==1.11.2             # via astroid
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools==41.6.0        # via gunicorn

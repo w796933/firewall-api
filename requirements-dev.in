@@ -1,6 +1,5 @@
 Django
 gunicorn
-requests
 flake8
 freezegun
 pylint
