@@ -4,10 +4,12 @@
 #
 #    pip-compile requirements.in
 #
+django-prometheus==1.1.0
 django==2.2.7
-gunicorn==20.0.0
+gunicorn==20.0.4
+prometheus-client==0.7.1  # via django-prometheus
 pytz==2019.3              # via django
 sqlparse==0.3.0           # via django
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==41.6.0        # via gunicorn
+# setuptools==42.0.2        # via gunicorn

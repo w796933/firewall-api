@@ -1,4 +1,5 @@
 Django
+django-prometheus
 gunicorn
 flake8
 freezegun

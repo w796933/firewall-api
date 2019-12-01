@@ -10,5 +10,6 @@ admin.site.site_url = None
 urlpatterns = [
     path('ipset/', include('ipset.urls')),
     path('iptables/', include('iptables.urls')),
+    path('', include('django_prometheus.urls')),
     path('admin/', admin.site.urls),
 ]
