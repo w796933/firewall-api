@@ -6,7 +6,7 @@
 #
 astroid==2.3.3            # via pylint
 django-prometheus==1.1.0
-django==2.2.7
+django==2.2.8
 entrypoints==0.3          # via flake8
 flake8==3.7.9
 freezegun==0.3.12
@@ -28,4 +28,4 @@ typed-ast==1.4.0          # via astroid
 wrapt==1.11.2             # via astroid
 
 # The following packages are considered to be unsafe in a requirements file:
-# setuptools==42.0.2        # via gunicorn
+# setuptools
