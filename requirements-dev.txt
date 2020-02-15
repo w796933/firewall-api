@@ -5,11 +5,11 @@
 #    pip-compile requirements-dev.in
 #
 astroid==2.3.3            # via pylint
-django-prometheus==1.1.0
-django==2.2.9
+django-prometheus==2.0.0
+django==2.2.10
 entrypoints==0.3          # via flake8
 flake8==3.7.9
-freezegun==0.3.12
+freezegun==0.3.14
 gunicorn==20.0.4
 isort==4.3.21             # via pylint
 lazy-object-proxy==1.4.3  # via astroid
@@ -22,9 +22,9 @@ pylint-plugin-utils==0.6  # via pylint-django
 pylint==2.4.4
 python-dateutil==2.8.1    # via freezegun
 pytz==2019.3              # via django
-six==1.13.0               # via astroid, freezegun, python-dateutil
+six==1.14.0               # via astroid, freezegun, python-dateutil
 sqlparse==0.3.0           # via django
-typed-ast==1.4.0          # via astroid
+typed-ast==1.4.1          # via astroid
 wrapt==1.11.2             # via astroid
 
 # The following packages are considered to be unsafe in a requirements file:
