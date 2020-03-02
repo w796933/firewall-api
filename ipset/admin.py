@@ -1,11 +1,15 @@
 """ Ipset admin module. """
 from django.contrib import admin
-from ipset.models import Entry, Set
+from ipset.models import (
+    BlacklistAddress,
+    BlacklistEvent,
+    WhitelistAddress,
+)
 
 
-@admin.register(Set)
-class SetAdmin(admin.ModelAdmin):
-    """ Set admin tweaks. """
+@admin.register(BlacklistAddress)
+class BlacklistAddressAdmin(admin.ModelAdmin):
+    """ BlacklistAddress admin tweaks. """
 
     def has_add_permission(self, request):
         """ Disable add. """
@@ -20,16 +24,26 @@ class SetAdmin(admin.ModelAdmin):
         return False
 
 
-@admin.register(Entry)
-class EntryAdmin(admin.ModelAdmin):
-    """ Entry admin tweaks. """
+@admin.register(BlacklistEvent)
+class BlacklistEventAdmin(admin.ModelAdmin):
+    """ BlacklistEvent admin tweaks. """
 
-    list_display = (
-        'entry_id',
-        'address',
-        'created',
-        'expires',
-    )
+    def has_add_permission(self, request):
+        """ Disable add. """
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        """ Disable change. """
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        """ Disable delete. """
+        return False
+
+
+@admin.register(WhitelistAddress)
+class WhitelistAddressAdmin(admin.ModelAdmin):
+    """ WhitelistAddress admin tweaks. """
 
     def has_add_permission(self, request):
         """ Disable add. """

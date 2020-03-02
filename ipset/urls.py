@@ -4,6 +4,6 @@ from ipset import views
 
 
 urlpatterns = [
-    path('entry/', views.EntryView.as_view()),
-    path('set/', views.SetView.as_view()),
+    path('blacklist', views.BlacklistView.as_view()),
+    path('whitelist', views.WhitelistView.as_view()),
 ]

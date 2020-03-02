@@ -1,6 +1,7 @@
 """ Django project settings. """
 import ast
 import os
+import random
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -11,13 +12,24 @@ with open(os.path.join(BASE_DIR, 'var', 'settings.py')) as settings_file:
     SETTINGS = ast.literal_eval(settings_file.read())
 
 
-# Required custom vars
+# Load SECRET_KEY from file or write a new one. Django 2.2.
+SECRET_KEY_FILE = os.path.join(BASE_DIR, 'var', 'secret_key')
+if os.path.isfile(SECRET_KEY_FILE):
+    with open(SECRET_KEY_FILE) as secret_fd:
+        SECRET_KEY = secret_fd.read().strip()
+else:
+    SECRET_KEY = ''.join(random.choice(
+        'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+    ) for _ in range(50))
+    with open(SECRET_KEY_FILE, 'w') as secret_fd:
+        secret_fd.write(SECRET_KEY)
 
-SECRET_KEY = SETTINGS['SECRET_KEY']
+
+# Required custom vars
 
 ADMINS = SETTINGS['ADMINS']
 
-IPSETS = SETTINGS['IPSETS']
+CLEANUP_MINUTES = SETTINGS['CLEANUP_MINUTES']
 
 SERVER_EMAIL = SETTINGS['SERVER_EMAIL']
 
@@ -39,6 +51,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'ipset.apps.IpsetConfig',
     'iptables.apps.IptablesConfig',
+    'django_q',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,6 +62,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
+    'ipset.middleware.ScheduleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -87,6 +101,26 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'var', 'db.sqlite3'),
     }
+}
+
+
+# Cache for django-q orm metrics.
+# https://docs.djangoproject.com/en/3.0/topics/cache/
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
+
+
+# Queue cluster.
+# https://django-q.readthedocs.io/en/latest/configure.html
+
+Q_CLUSTER = {
+    'orm': 'default',
+    'catch_up': False,
 }
 
 

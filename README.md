@@ -4,5 +4,5 @@ for other components on the host
 to manage IPv4 and IPv6
 ipsets and iptables rules.
 
-Please see design notes and diagrams
-in tests directories.
+See per-app design notes and diagrams
+for more info.
