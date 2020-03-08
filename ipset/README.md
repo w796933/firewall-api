@@ -1,7 +1,7 @@
 # Ipset app notes
 
 NB: Configuration management
-should always restart the firewall project service
+should restart the firewall project service
 after changing static ipset configuration.
 
 
@@ -30,22 +30,23 @@ The app also assumes the existence
 of statically configured ipset membership
 that it knows nothing about.
 In other words,
-that some separate process has preloaded ipsets
+it takes into account
+that a separate process has preloaded ipsets
 with addresses that should be permanent members
 of whitelist and blacklist ipsets
 and that the app shouldn't remove them.
 
-The app's `ready` method
-runs whitelist and blacklist startup processes
+App middleware
+runs whitelist and blacklist init processes
 to sync existing set membership
 with records in the project database.
 
-Blacklist and whitelist cleanup processes
-run periodically to remove addresses from ipsets.
+Run blacklist and whitelist cleanup processes
+periodically to remove addresses from ipsets.
 
 The app provides no API endpoint to remove
 addresses from the admin whitelist ipset.
-Only the whitelist cleanup process can do so.
+Only whitelist cleanup can do so.
 
 
 ## API endpoints
@@ -61,7 +62,7 @@ to add to the whitelist.
 
 **Database and view**
 
-The project database stores unique AdminAddress records.
+The project database stores unique WhitelistAddress records.
 
 When the POST endpoint receives a request,
 it creates an address record if one doesn't already exist
@@ -77,27 +78,26 @@ before adding a new whitelist record,
 and if the address is already a member of the whitelist ipset,
 the view ignores the request.
 
-**Startup process**
+**Init**
 
-The whitelist startup process
+Whitelist init
 removes expired address records,
 but doesn't remove addresses from ipsets.
 
 For all remaining address records,
-the process tests the underlying ipset
+init tests the underlying ipset
 and removes the record if it exists.
 This avoids later removal
 of the statically configured address from the ipset
-by the whitelist cleanup process.
+by whitelist cleanup.
 
 The firewall API should not service requests
-until the startup process is complete.
+until init is complete.
 
-**Cleanup process**
+**Cleanup**
 
-The whitelist cleanup process runs periodically
-after project start
-and removes expired whitelist records and ipset entries.
+Run whitelist cleanup after project start
+to remove expired records and ipset entries.
 
 
 ### Global blacklist POST endpoint
@@ -108,11 +108,11 @@ The global blacklist POST endpoint
 accepts `address`, `timeout`, `severity` and `reason` keys.
 Address values are IPv4 or IPv6 addresses,
 severity values are integers,
-timeout is a number of seconds blacklist event should be in effect,
-and reason values are lowercase letters only.
+timeout is a number of seconds a blacklist event should be valid,
+and reason values are slugs.
 Address and severity are mandatory,
 and timeout and reason are optional.
-The address is banned permanently
+Addresses are banned permanently
 when the timeout key is not present.
 
 **Database**
@@ -122,7 +122,7 @@ BlacklistAddress and BlacklistEvent records,
 and BlacklistEvent records contain a foreign key reference
 to BlacklistAddresses
 to allows event records to be managed
-by the BlacklistAddress the object manager.
+by the BlacklistAddress object manager.
 
 **View**
 
@@ -149,46 +149,44 @@ before the firewall tracks connection state,
 this shouldn't be an issue.
 I hope.
 
-**Startup process**
+**Init**
 
-The blacklist startup process
-removes address and event records from the project databse
+Blacklist init
+removes address and event records from the project database
 based on record timeout
 but doesn't remove addresses from blacklist ipsets.
 
 For remaining address records,
-the process tests the underlying ipset
+init tests the underlying ipset
 and removes address and event records if it exists.
 This avoids later removal
 of the statically configured address from the ipset
-by the blacklist cleanup process.
+by blacklist cleanup.
 
 For all remaining address records,
-the process checks the accumulated severity
+init checks the accumulated severity
 of events in blacklisted address' remaining records,
 and if the total severity
 is higher than the ban threshold,
-add the address to the blacklist ipset.
+it adds the address to the blacklist ipset.
 
 The firewall API should not service requests
-until the startup process is complete.
+until init is complete.
 
-**Cleanup process**
+**Cleanup**
 
-The blacklist cleanup process runs periodically
-after project start
-to remove records from the project database
-and addresses from the blacklist ipsets
+Run blacklist cleanup periodically after project start
+to remove records and addresses from blacklist ipsets
 based on record age and timeout.
 
 After removing expired records,
-the process checks the accumulated severity
+cleanup checks the accumulated severity
 of events in blacklisted address' remaining records,
 and if the total severity
 is lower than the ban threshold,
 removes the address from the blacklist ipset.
 
-The cleanup process doesn't remove either address or event records
+Cleanup doesn't remove records or addresses
 for permanently banned addresses.
 
 **Permanent bans**
@@ -203,7 +201,7 @@ and immediately adds it to the blacklist ipset.
 
 ### Global blacklist DELETE endpoint
 
-TODO
+TODO Is this a good idea?
 
 The blacklist DELETE endpoint
 accepts a single `address` key

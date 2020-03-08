@@ -1,8 +1,6 @@
 """ Base test class module. """
-import random
-import string
-import subprocess
 import logging
+from django.core import mail
 from django.test import TestCase
 
 
@@ -19,3 +17,9 @@ class IpsetTestCase(TestCase):
     def _log(data):
         """ Log the data to the django.server info logger. """
         logging.getLogger('django.server').info(data)
+
+    @staticmethod
+    def _log_mailbox():
+        """ Log the current test's mailbox. """
+        for msg in mail.outbox:
+            IpsetTestCase._log(msg.subject)

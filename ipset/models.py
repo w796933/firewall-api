@@ -11,18 +11,33 @@ class AbstractAddress(models.Model):
         abstract = True
 
     address = models.GenericIPAddressField()
+    ipsetname = None
 
-    def setname(self, basename):
-        """ Return protocol-specific setname based on address type. """
+    def is_ipv4(self):
+        """ Return True if the address is IPv4. """
         try:
             validators.validate_ipv4_address(self.address)
-            return '%s4' % basename
+            return True
         except ValidationError:
-            try:
-                validators.validate_ipv6_address(self.address)
-                return '%s6' % basename
-            except ValidationError:
-                raise ValueError('Bad address')
+            return False
+
+    def is_ipv6(self):
+        """ Return True if the address is IPv6. """
+        try:
+            validators.validate_ipv6_address(self.address)
+            return True
+        except ValidationError:
+            return False
+
+    def setname(self):
+        """ Return protocol-specific setname or raise ValueError. """
+        if not self.ipsetname:
+            raise ValueError('No setname')
+        if self.is_ipv4():
+            return '%s4' % self.ipsetname
+        if self.is_ipv6():
+            return '%s6' % self.ipsetname
+        raise ValueError('Bad address')
 
 
 class BlacklistAddress(AbstractAddress):
