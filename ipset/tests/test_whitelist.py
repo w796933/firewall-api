@@ -1,4 +1,4 @@
-""" Test module for schedules. """
+""" Whitelist test module. """
 from django.core import mail
 from ipset import libipset
 from ipset.tests.base import IpsetTestCase
@@ -62,3 +62,14 @@ class WhitelistTestCase(IpsetTestCase):
         obj = WhitelistAddress.objects.get(address=addr)
         self.assertTrue(obj.last_access > before)
         libipset.remove_entry('whitelist4', addr)
+
+    def test_add_ipv6(self):
+        """ Test POST with IPv6 address. """
+
+
+class WhitelistInitTestCase(IpsetTestCase):
+    """ Validate ipset whitelist init. """
+
+
+class WhitelistCleanTestCase(IpsetTestCase):
+    """ Validate ipset whitelist clean. """

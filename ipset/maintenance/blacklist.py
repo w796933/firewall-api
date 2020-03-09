@@ -1,11 +1,11 @@
 """ Blacklist maintenance module. """
 
 
-def cleanup():
-    """ Clean the ipsets and blacklist models periodically. """
+def clean():
+    """ Clean blacklist periodically. """
     pass
 
 
-def startup():
-    """ Clean blacklist models at project start. """
+def init():
+    """ Init blacklist on start. """
     pass

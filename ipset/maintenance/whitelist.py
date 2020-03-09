@@ -1,11 +1,11 @@
 """ Whitelist maintenance module. """
 
 
-def cleanup():
-    """ Clean the ipsets and whitelist models periodically. """
+def clean():
+    """ Clean whitelist periodically. """
     pass
 
 
-def startup():
-    """ Clean whitelist models at project start. """
+def init():
+    """ Init whitelist on start. """
     pass
