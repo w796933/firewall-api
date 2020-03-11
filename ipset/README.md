@@ -19,10 +19,11 @@ to let other processes on localhost:
 The app assumes
 the existence of IPv4 and IPv6
 whitelist and blacklist ipsets on a host,
-and that firewall rules allow access
-to the hosts's SSH port
+and that firewall rules
+allow access to the hosts's SSH port
 only from addresses in the whitelist ipsets,
-and that block access to all transports and ports
+and that firewally rules
+block access to all transports and ports
 from addresses in the blacklist ipsets
 before the firewall tracks connection state.
 
@@ -35,6 +36,11 @@ that a separate process has preloaded ipsets
 with addresses that should be permanent members
 of whitelist and blacklist ipsets
 and that the app shouldn't remove them.
+
+The app also assumes
+that the project is run
+as a django-q service,
+and it adds schedules 
 
 App middleware
 runs whitelist and blacklist init processes

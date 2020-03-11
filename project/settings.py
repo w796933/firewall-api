@@ -29,8 +29,6 @@ else:
 
 ADMINS = SETTINGS['ADMINS']
 
-CLEANUP_MINUTES = SETTINGS['CLEANUP_MINUTES']
-
 SERVER_EMAIL = SETTINGS['SERVER_EMAIL']
 
 TIME_ZONE = SETTINGS['TIME_ZONE']
@@ -51,7 +49,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'ipset.apps.IpsetConfig',
     'iptables.apps.IptablesConfig',
-    # 'django_q',
+    'django_q',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,7 +60,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django_prometheus.middleware.PrometheusBeforeMiddleware',
-    # 'ipset.middleware.ScheduleMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -119,8 +116,9 @@ CACHES = {
 # https://django-q.readthedocs.io/en/latest/configure.html
 
 Q_CLUSTER = {
-    'orm': 'default',
     'catch_up': False,
+    'orm': 'default',
+    'poll': 10,
 }
 
 
