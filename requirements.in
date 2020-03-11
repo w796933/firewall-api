@@ -1,5 +1,3 @@
 Django
-django-q
-python-memcached
-django-prometheus
 daphne
+django-prometheus

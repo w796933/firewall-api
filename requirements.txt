@@ -4,20 +4,16 @@
 #
 #    pip-compile requirements.in
 #
-arrow==0.15.5             # via django-q
-asgiref==3.2.3            # via daphne, django
+asgiref==3.2.5            # via daphne, django
 attrs==19.3.0             # via automat, service-identity, twisted
 autobahn==20.3.1          # via daphne
 automat==20.2.0           # via twisted
-blessed==1.17.2           # via django-q
 cffi==1.14.0              # via cryptography
 constantly==15.1.0        # via twisted
 cryptography==2.8         # via autobahn, pyopenssl, service-identity
 daphne==2.4.1             # via -r requirements.in
-django-picklefield==2.1.1  # via django-q
 django-prometheus==2.0.0  # via -r requirements.in
-django-q==1.2.1           # via -r requirements.in
-django==3.0.4             # via -r requirements.in, django-picklefield, django-q
+django==3.0.4             # via -r requirements.in
 hyperlink==19.0.0         # via twisted
 idna==2.9                 # via hyperlink, twisted
 incremental==17.5.0       # via twisted
@@ -27,16 +23,13 @@ pyasn1==0.4.8             # via pyasn1-modules, service-identity
 pycparser==2.20           # via cffi
 pyhamcrest==2.0.2         # via twisted
 pyopenssl==19.1.0         # via twisted
-python-dateutil==2.8.1    # via arrow
-python-memcached==1.59    # via -r requirements.in
 pytz==2019.3              # via django
 service-identity==18.1.0  # via twisted
-six==1.14.0               # via automat, blessed, cryptography, pyopenssl, python-dateutil, python-memcached, txaio
+six==1.14.0               # via automat, cryptography, pyopenssl, txaio
 sqlparse==0.3.1           # via django
 twisted[tls]==19.10.0     # via daphne
 txaio==20.1.1             # via autobahn
-wcwidth==0.1.8            # via blessed
-zope.interface==4.7.1     # via twisted
+zope.interface==4.7.2     # via twisted
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

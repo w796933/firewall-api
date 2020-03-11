@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'user.apps.UserConfig',
     'ipset.apps.IpsetConfig',
     'iptables.apps.IptablesConfig',
-    'django_q',
+    'django_prometheus',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -98,27 +98,6 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'var', 'db.sqlite3'),
     }
-}
-
-
-# Cache for django-q orm metrics.
-# https://docs.djangoproject.com/en/3.0/topics/cache/
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}
-
-
-# Queue cluster.
-# https://django-q.readthedocs.io/en/latest/configure.html
-
-Q_CLUSTER = {
-    'catch_up': False,
-    'orm': 'default',
-    'poll': 10,
 }
 
 

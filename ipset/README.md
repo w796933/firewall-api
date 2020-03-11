@@ -1,28 +1,45 @@
 # Ipset app notes
 
-NB: Configuration management
-should restart the firewall project service
-after changing static ipset configuration.
+I tried cleaning ipsets periodically
+via `django-q` schedules,
+and `django-q` is great,
+but it spawns five processes
+and eats at least 15% of the memory
+of a $5 droplet,
+so a management command is
+more economical.
+
+This,
+and consideration of the need for efficiency
+in the blacklist features,
+makes me think that this whole project
+should be re-written in golang.
+Only the whitelist is implemented here
+so I can move forward
+without doing so
+and use the existing firewall
+to implement port knocking
+in projects that depend on the stack.
 
 
 ## App
 
 The ipset app
-provides a simple non-JSON REST API
+provides a simple HTTP API
 to let other processes on localhost:
 
 - Add addresses temporarily
   to the admin whitelist ipset.
 - Add addresses temporarily or permanently
-  to global blacklist ipset.
+  to global blacklist ipset (TODO).
 
 The app assumes
 the existence of IPv4 and IPv6
 whitelist and blacklist ipsets on a host,
-and that firewall rules
-allow access to the hosts's SSH port
+that firewall rules
+allow access to the host's SSH port
 only from addresses in the whitelist ipsets,
-and that firewally rules
+and that firewall rules
 block access to all transports and ports
 from addresses in the blacklist ipsets
 before the firewall tracks connection state.
@@ -37,22 +54,12 @@ with addresses that should be permanent members
 of whitelist and blacklist ipsets
 and that the app shouldn't remove them.
 
-The app also assumes
-that the project is run
-as a django-q service,
-and it adds schedules 
+Firewall init methods
+run in the ipset app config `ready` method
+when the app is started as an ASGI application.
 
-App middleware
-runs whitelist and blacklist init processes
-to sync existing set membership
-with records in the project database.
-
-Run blacklist and whitelist cleanup processes
-periodically to remove addresses from ipsets.
-
-The app provides no API endpoint to remove
-addresses from the admin whitelist ipset.
-Only whitelist cleanup can do so.
+Firewall clean methods
+run in a management command.
 
 
 ## API endpoints
@@ -86,27 +93,28 @@ the view ignores the request.
 
 **Init**
 
-Whitelist init
-removes expired address records,
-but doesn't remove addresses from ipsets.
+Init deletes all whitelist records
+from the app database on project start,
+but doesn't remove addresses
+from underlying ipsets.
 
-For all remaining address records,
-init tests the underlying ipset
-and removes the record if it exists.
-This avoids later removal
-of the statically configured address from the ipset
-by whitelist cleanup.
+**Clean**
 
-The firewall API should not service requests
-until init is complete.
+Clean queries all expired records,
+removes their addresses from underlying ipsets
+and deletes the expired records.
 
-**Cleanup**
-
-Run whitelist cleanup after project start
-to remove expired records and ipset entries.
+Both the project and ipset service
+should be restarted
+after changing static ipset config
+so existing records are cleared
+and periodic ipset cleaning doesn't remove
+statically whitelisted addresses.
 
 
 ### Global blacklist POST endpoint
+
+Not implemented.
 
 **Keys and values**
 
@@ -167,7 +175,7 @@ init tests the underlying ipset
 and removes address and event records if it exists.
 This avoids later removal
 of the statically configured address from the ipset
-by blacklist cleanup.
+by blacklist clean.
 
 For all remaining address records,
 init checks the accumulated severity
@@ -179,20 +187,20 @@ it adds the address to the blacklist ipset.
 The firewall API should not service requests
 until init is complete.
 
-**Cleanup**
+**Clean**
 
-Run blacklist cleanup periodically after project start
+Run blacklist clean periodically after project start
 to remove records and addresses from blacklist ipsets
 based on record age and timeout.
 
 After removing expired records,
-cleanup checks the accumulated severity
+clean checks the accumulated severity
 of events in blacklisted address' remaining records,
 and if the total severity
 is lower than the ban threshold,
 removes the address from the blacklist ipset.
 
-Cleanup doesn't remove records or addresses
+Clean doesn't remove records or addresses
 for permanently banned addresses.
 
 **Permanent bans**
