@@ -4,5 +4,5 @@ from iptables import views
 
 
 urlpatterns = [
-    path('input/accept/', views.InputAcceptView.as_view()),
+    path('input/accept', views.InputAcceptView.as_view()),
 ]

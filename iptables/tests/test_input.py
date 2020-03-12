@@ -7,60 +7,92 @@ class InputAcceptTests(IptablesTestCase):
 
     def test_tcp_port(self):
         """ Assert that iptables rules are added for a single tcp port. """
-        response = self.client.put(
-            '/iptables/input/accept/',
-            content_type='application/json',
-            data={'transport': 'tcp', 'start': 8443, 'end': 8443},
+        response = self.client.post(
+            '/iptables/input/accept',
+            data={
+                'action': 'add',
+                'transport': 'tcp',
+                'start': 8443,
+                'end': 8443
+            },
         )
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.put(
-            '/iptables/input/accept/',
-            content_type='application/json',
-            data={'transport': 'tcp', 'start': 8443, 'end': 8443},
+        response = self.client.post(
+            '/iptables/input/accept',
+            data={
+                'action': 'add',
+                'transport': 'tcp',
+                'start': 8443,
+                'end': 8443
+            },
         )
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.delete(
-            '/iptables/input/accept/',
-            content_type='application/json',
-            data={'transport': 'tcp', 'start': 8443, 'end': 8443},
+        response = self.client.post(
+            '/iptables/input/accept',
+            data={
+                'action': 'delete',
+                'transport': 'tcp',
+                'start': 8443,
+                'end': 8443
+            },
         )
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.delete(
-            '/iptables/input/accept/',
-            content_type='application/json',
-            data={'transport': 'tcp', 'start': 8443, 'end': 8443},
+        response = self.client.post(
+            '/iptables/input/accept',
+            data={
+                'action': 'delete',
+                'transport': 'tcp',
+                'start': 8443,
+                'end': 8443
+            },
         )
         self.assertEqual(response.status_code, 200)
 
     def test_udp_port_range(self):
         """ Assert that iptables rules are added for a udp port range. """
-        response = self.client.put(
-            '/iptables/input/accept/',
-            content_type='application/json',
-            data={'transport': 'udp', 'start': 8443, 'end': 9443},
+        response = self.client.post(
+            '/iptables/input/accept',
+            data={
+                'action': 'add',
+                'transport': 'udp',
+                'start': 8443,
+                'end': 9443
+            },
         )
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.put(
-            '/iptables/input/accept/',
-            content_type='application/json',
-            data={'transport': 'udp', 'start': 8443, 'end': 9443},
+        response = self.client.post(
+            '/iptables/input/accept',
+            data={
+                'action': 'add',
+                'transport': 'udp',
+                'start': 8443,
+                'end': 9443
+            },
         )
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.delete(
-            '/iptables/input/accept/',
-            content_type='application/json',
-            data={'transport': 'udp', 'start': 8443, 'end': 9443},
+        response = self.client.post(
+            '/iptables/input/accept',
+            data={
+                'action': 'delete',
+                'transport': 'udp',
+                'start': 8443,
+                'end': 9443
+            },
         )
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.delete(
-            '/iptables/input/accept/',
-            content_type='application/json',
-            data={'transport': 'udp', 'start': 8443, 'end': 9443},
+        response = self.client.post(
+            '/iptables/input/accept',
+            data={
+                'action': 'delete',
+                'transport': 'udp',
+                'start': 8443,
+                'end': 9443
+            },
         )
         self.assertEqual(response.status_code, 200)
