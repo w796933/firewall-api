@@ -4,17 +4,17 @@
 #
 #    pip-compile requirements-dev.in
 #
-asgiref==3.2.5            # via daphne, django
+asgiref==3.2.7            # via daphne, django
 astroid==2.3.3            # via pylint
 attrs==19.3.0             # via automat, service-identity, twisted
-autobahn==20.3.1          # via daphne
+autobahn==20.4.1          # via daphne
 automat==20.2.0           # via twisted
 cffi==1.14.0              # via cryptography
 constantly==15.1.0        # via twisted
 cryptography==2.8         # via autobahn, pyopenssl, service-identity
 daphne==2.4.1             # via -r requirements-dev.in
 django-prometheus==2.0.0  # via -r requirements-dev.in
-django==3.0.4             # via -r requirements-dev.in
+django==3.0.5             # via -r requirements-dev.in
 entrypoints==0.3          # via flake8
 flake8==3.7.9             # via -r requirements-dev.in
 freezegun==0.3.15         # via -r requirements-dev.in
@@ -38,13 +38,13 @@ pyopenssl==19.1.0         # via twisted
 python-dateutil==2.8.1    # via freezegun
 pytz==2019.3              # via django
 service-identity==18.1.0  # via twisted
-six==1.14.0               # via astroid, automat, cryptography, freezegun, pyopenssl, python-dateutil, txaio
+six==1.14.0               # via astroid, automat, cryptography, freezegun, pyopenssl, python-dateutil
 sqlparse==0.3.1           # via django
-twisted[tls]==19.10.0     # via daphne
-txaio==20.1.1             # via autobahn
+twisted[tls]==20.3.0      # via daphne
+txaio==20.4.1             # via autobahn
 typed-ast==1.4.1          # via astroid
 wrapt==1.11.2             # via astroid
-zope.interface==4.7.2     # via twisted
+zope.interface==5.0.2     # via twisted
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
