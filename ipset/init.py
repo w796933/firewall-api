@@ -1,14 +1,14 @@
-""" Blacklist/whitelist init functions module. """
+""" Block/admin set init functions module. """
 import logging
-from ipset.models import WhitelistAddress
+from ipset.models import AdminAddress
 
 
-def init_blacklist():
-    """ Init blacklist on start. """
+def init_blocked_addrs():
+    """ Init blocked addrs on start. """
 
 
-def init_whitelist():
-    """ Init whitelist on start. """
+def init_admin_addrs():
+    """ Init admin addrs on start. """
     logging.getLogger('django.server').info(
-        'Init deleted %s', WhitelistAddress.objects.all().delete()
+        'Init deleted %s', AdminAddress.objects.all().delete()
     )

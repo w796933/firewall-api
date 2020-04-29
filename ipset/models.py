@@ -40,20 +40,20 @@ class AbstractAddress(models.Model):
     address = models.GenericIPAddressField()
 
 
-class BlacklistAddress(AbstractAddress):
+class BlockedAddress(AbstractAddress):
     """ An IPv4 or IPv6 address, a banned state
-    and a set of blacklist events. """
+    and a set of block events. """
 
     banned = models.BooleanField()
 
-    # self.blacklistevent_set.all()
+    # self.blockevent_set.all()
 
 
-class BlacklistEvent(models.Model):
+class BlockEvent(models.Model):
     """ An address, a reason, a severity and a timeout. """
 
     address = models.ForeignKey(
-        BlacklistAddress,
+        BlockedAddress,
         on_delete=models.CASCADE,
     )
     created = models.DateTimeField(auto_now_add=True)
@@ -68,7 +68,7 @@ class BlacklistEvent(models.Model):
     )
 
 
-class WhitelistAddress(AbstractAddress):
+class AdminAddress(AbstractAddress):
     """ An address and a last access time. """
 
     last_access = models.DateTimeField(auto_now=True)

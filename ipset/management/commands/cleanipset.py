@@ -1,6 +1,6 @@
 """ Clean entries managment command module. """
 from django.core.management.base import BaseCommand
-from ipset.clean import clean_whitelist
+from ipset.clean import clean_admin_addrs
 
 
 class Command(BaseCommand):
@@ -12,4 +12,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         """ Remove expired entries. """
-        clean_whitelist()
+        clean_admin_addrs()

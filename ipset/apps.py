@@ -12,7 +12,7 @@ class IpsetConfig(AppConfig):
         """ Run init when the app starts as an ASGI application. """
         if sys.argv[-1] == 'project.asgi:application':
             # pylint: disable=import-outside-toplevel
-            from ipset.init import init_blacklist, init_whitelist
+            from ipset.init import init_blocked_addrs, init_admin_addrs
 
-            init_blacklist()
-            init_whitelist()
+            init_blocked_addrs()
+            init_admin_addrs()
