@@ -13,11 +13,11 @@ constantly==15.1.0        # via twisted
 cryptography==2.9.2       # via autobahn, pyopenssl, service-identity
 daphne==2.5.0             # via -r requirements.in
 django-prometheus==2.0.0  # via -r requirements.in
-django==3.0.6             # via -r requirements.in
+django==3.0.7             # via -r requirements.in
 hyperlink==19.0.0         # via twisted
 idna==2.9                 # via hyperlink, twisted
 incremental==17.5.0       # via twisted
-prometheus-client==0.7.1  # via django-prometheus
+prometheus-client==0.8.0  # via django-prometheus
 pyasn1-modules==0.2.8     # via service-identity
 pyasn1==0.4.8             # via pyasn1-modules, service-identity
 pycparser==2.20           # via cffi
@@ -25,7 +25,7 @@ pyhamcrest==2.0.2         # via twisted
 pyopenssl==19.1.0         # via twisted
 pytz==2020.1              # via django
 service-identity==18.1.0  # via twisted
-six==1.14.0               # via automat, cryptography, pyopenssl
+six==1.15.0               # via automat, cryptography, pyopenssl
 sqlparse==0.3.1           # via django
 twisted[tls]==20.3.0      # via daphne
 txaio==20.4.1             # via autobahn
