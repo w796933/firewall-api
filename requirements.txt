@@ -4,18 +4,18 @@
 #
 #    pip-compile requirements.in
 #
-asgiref==3.2.7            # via daphne, django
+asgiref==3.2.10           # via daphne, django
 attrs==19.3.0             # via automat, service-identity, twisted
-autobahn==20.4.3          # via daphne
+autobahn==20.6.2          # via daphne
 automat==20.2.0           # via twisted
 cffi==1.14.0              # via cryptography
 constantly==15.1.0        # via twisted
 cryptography==2.9.2       # via autobahn, pyopenssl, service-identity
 daphne==2.5.0             # via -r requirements.in
 django-prometheus==2.0.0  # via -r requirements.in
-django==3.0.7             # via -r requirements.in
+django==3.0.8             # via -r requirements.in
 hyperlink==19.0.0         # via twisted
-idna==2.9                 # via hyperlink, twisted
+idna==2.10                # via hyperlink, twisted
 incremental==17.5.0       # via twisted
 prometheus-client==0.8.0  # via django-prometheus
 pyasn1-modules==0.2.8     # via service-identity
