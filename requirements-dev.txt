@@ -7,17 +7,17 @@
 asgiref==3.2.10           # via daphne, django
 astroid==2.4.2            # via pylint
 attrs==19.3.0             # via automat, service-identity, twisted
-autobahn==20.6.2          # via daphne
+autobahn==20.7.1          # via daphne
 automat==20.2.0           # via twisted
-cffi==1.14.0              # via cryptography
+cffi==1.14.1              # via cryptography
 constantly==15.1.0        # via twisted
-cryptography==2.9.2       # via autobahn, pyopenssl, service-identity
+cryptography==3.0         # via autobahn, pyopenssl, service-identity
 daphne==2.5.0             # via -r requirements-dev.in
 django-prometheus==2.0.0  # via -r requirements-dev.in
-django==3.0.8             # via -r requirements-dev.in
+django==3.1               # via -r requirements-dev.in
 flake8==3.8.3             # via -r requirements-dev.in
 freezegun==0.3.15         # via -r requirements-dev.in
-hyperlink==19.0.0         # via twisted
+hyperlink==20.0.1         # via twisted
 idna==2.10                # via hyperlink, twisted
 importlib-metadata==1.7.0  # via flake8
 incremental==17.5.0       # via twisted
@@ -31,7 +31,7 @@ pycodestyle==2.6.0        # via flake8
 pycparser==2.20           # via cffi
 pyflakes==2.2.0           # via flake8
 pyhamcrest==2.0.2         # via twisted
-pylint-django==2.0.15     # via -r requirements-dev.in
+pylint-django==2.3.0      # via -r requirements-dev.in
 pylint-plugin-utils==0.6  # via pylint-django
 pylint==2.5.3             # via -r requirements-dev.in, pylint-django, pylint-plugin-utils
 pyopenssl==19.1.0         # via twisted
