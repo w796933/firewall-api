@@ -6,22 +6,22 @@
 #
 asgiref==3.2.10           # via daphne, django
 astroid==2.4.2            # via pylint
-attrs==19.3.0             # via automat, service-identity, twisted
+attrs==20.2.0             # via automat, service-identity, twisted
 autobahn==20.7.1          # via daphne
 automat==20.2.0           # via twisted
-cffi==1.14.1              # via cryptography
+cffi==1.14.3              # via cryptography
 constantly==15.1.0        # via twisted
-cryptography==3.0         # via autobahn, pyopenssl, service-identity
+cryptography==3.1.1       # via autobahn, pyopenssl, service-identity
 daphne==2.5.0             # via -r requirements-dev.in
-django-prometheus==2.0.0  # via -r requirements-dev.in
-django==3.1               # via -r requirements-dev.in
+django-prometheus==2.1.0  # via -r requirements-dev.in
+django==3.1.1             # via -r requirements-dev.in
 flake8==3.8.3             # via -r requirements-dev.in
-freezegun==0.3.15         # via -r requirements-dev.in
+freezegun==1.0.0          # via -r requirements-dev.in
 hyperlink==20.0.1         # via twisted
 idna==2.10                # via hyperlink, twisted
-importlib-metadata==1.7.0  # via flake8
+importlib-metadata==2.0.0  # via flake8
 incremental==17.5.0       # via twisted
-isort==4.3.21             # via pylint
+isort==5.5.3              # via pylint
 lazy-object-proxy==1.4.3  # via astroid
 mccabe==0.6.1             # via flake8, pylint
 prometheus-client==0.8.0  # via django-prometheus
@@ -33,19 +33,19 @@ pyflakes==2.2.0           # via flake8
 pyhamcrest==2.0.2         # via twisted
 pylint-django==2.3.0      # via -r requirements-dev.in
 pylint-plugin-utils==0.6  # via pylint-django
-pylint==2.5.3             # via -r requirements-dev.in, pylint-django, pylint-plugin-utils
+pylint==2.6.0             # via -r requirements-dev.in, pylint-django, pylint-plugin-utils
 pyopenssl==19.1.0         # via twisted
 python-dateutil==2.8.1    # via freezegun
 pytz==2020.1              # via django
 service-identity==18.1.0  # via twisted
-six==1.15.0               # via astroid, automat, cryptography, freezegun, pyopenssl, python-dateutil
+six==1.15.0               # via astroid, automat, cryptography, pyopenssl, python-dateutil
 sqlparse==0.3.1           # via django
 toml==0.10.1              # via pylint
 twisted[tls]==20.3.0      # via daphne
 txaio==20.4.1             # via autobahn
 typed-ast==1.4.1          # via astroid
 wrapt==1.12.1             # via astroid
-zipp==3.1.0               # via importlib-metadata
+zipp==3.2.0               # via importlib-metadata
 zope.interface==5.1.0     # via twisted
 
 # The following packages are considered to be unsafe in a requirements file:
