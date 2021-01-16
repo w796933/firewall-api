@@ -32,21 +32,21 @@ daphne==3.0.1
     # via -r requirements-dev.in
 django-prometheus==2.1.0
     # via -r requirements-dev.in
-django==3.1.4
+django==3.1.5
     # via -r requirements-dev.in
 flake8==3.8.4
     # via -r requirements-dev.in
 freezegun==1.0.0
     # via -r requirements-dev.in
-hyperlink==20.0.1
+hyperlink==21.0.0
     # via
     #   autobahn
     #   twisted
-idna==3.0
+idna==3.1
     # via
     #   hyperlink
     #   twisted
-importlib-metadata==3.3.0
+importlib-metadata==3.4.0
     # via flake8
 incremental==17.5.0
     # via twisted
@@ -74,7 +74,7 @@ pyflakes==2.2.0
     # via flake8
 pyhamcrest==2.0.2
     # via twisted
-pylint-django==2.3.0
+pylint-django==2.4.2
     # via -r requirements-dev.in
 pylint-plugin-utils==0.6
     # via pylint-django

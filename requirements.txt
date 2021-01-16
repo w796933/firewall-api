@@ -30,13 +30,13 @@ daphne==3.0.1
     # via -r requirements.in
 django-prometheus==2.1.0
     # via -r requirements.in
-django==3.1.4
+django==3.1.5
     # via -r requirements.in
-hyperlink==20.0.1
+hyperlink==21.0.0
     # via
     #   autobahn
     #   twisted
-idna==3.0
+idna==3.1
     # via
     #   hyperlink
     #   twisted
