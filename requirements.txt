@@ -30,7 +30,7 @@ daphne==3.0.1
     # via -r requirements.in
 django-prometheus==2.1.0
     # via -r requirements.in
-django==3.1.5
+django==3.1.6
     # via -r requirements.in
 hyperlink==21.0.0
     # via
@@ -56,7 +56,7 @@ pyhamcrest==2.0.2
     # via twisted
 pyopenssl==20.0.1
     # via twisted
-pytz==2020.5
+pytz==2021.1
     # via django
 service-identity==18.1.0
     # via twisted
