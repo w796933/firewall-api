@@ -13,15 +13,15 @@ attrs==20.3.0
     #   automat
     #   service-identity
     #   twisted
-autobahn==20.12.3
+autobahn==21.2.1
     # via daphne
 automat==20.2.0
     # via twisted
-cffi==1.14.4
+cffi==1.14.5
     # via cryptography
 constantly==15.1.0
     # via twisted
-cryptography==3.3.1
+cryptography==3.4.5
     # via
     #   autobahn
     #   pyopenssl
@@ -63,7 +63,6 @@ service-identity==18.1.0
 six==1.15.0
     # via
     #   automat
-    #   cryptography
     #   pyopenssl
 sqlparse==0.4.1
     # via django
