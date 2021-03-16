@@ -8,14 +8,14 @@ asgiref==3.3.1
     # via
     #   daphne
     #   django
-astroid==2.4.2
+astroid==2.5.1
     # via pylint
 attrs==20.3.0
     # via
     #   automat
     #   service-identity
     #   twisted
-autobahn==21.2.1
+autobahn==21.3.1
     # via daphne
 automat==20.2.0
     # via twisted
@@ -23,7 +23,7 @@ cffi==1.14.5
     # via cryptography
 constantly==15.1.0
     # via twisted
-cryptography==3.4.5
+cryptography==3.4.6
     # via
     #   autobahn
     #   pyopenssl
@@ -32,9 +32,9 @@ daphne==3.0.1
     # via -r requirements-dev.in
 django-prometheus==2.1.0
     # via -r requirements-dev.in
-django==3.1.6
+django==3.1.7
     # via -r requirements-dev.in
-flake8==3.8.4
+flake8==3.9.0
     # via -r requirements-dev.in
 freezegun==1.1.0
     # via -r requirements-dev.in
@@ -46,13 +46,13 @@ idna==3.1
     # via
     #   hyperlink
     #   twisted
-importlib-metadata==3.4.0
+importlib-metadata==3.7.3
     # via flake8
-incremental==17.5.0
+incremental==21.3.0
     # via twisted
 isort==5.7.0
     # via pylint
-lazy-object-proxy==1.4.3
+lazy-object-proxy==1.5.2
     # via astroid
 mccabe==0.6.1
     # via
@@ -66,19 +66,17 @@ pyasn1==0.4.8
     # via
     #   pyasn1-modules
     #   service-identity
-pycodestyle==2.6.0
+pycodestyle==2.7.0
     # via flake8
 pycparser==2.20
     # via cffi
-pyflakes==2.2.0
+pyflakes==2.3.0
     # via flake8
-pyhamcrest==2.0.2
-    # via twisted
 pylint-django==2.4.2
     # via -r requirements-dev.in
 pylint-plugin-utils==0.6
     # via pylint-django
-pylint==2.6.0
+pylint==2.7.2
     # via
     #   -r requirements-dev.in
     #   pylint-django
@@ -93,7 +91,6 @@ service-identity==18.1.0
     # via twisted
 six==1.15.0
     # via
-    #   astroid
     #   automat
     #   pyopenssl
     #   python-dateutil
@@ -101,9 +98,9 @@ sqlparse==0.4.1
     # via django
 toml==0.10.2
     # via pylint
-twisted[tls]==20.3.0
+twisted[tls]==21.2.0
     # via daphne
-txaio==20.12.1
+txaio==21.2.1
     # via autobahn
 typed-ast==1.4.2
     # via astroid
@@ -111,7 +108,7 @@ typing-extensions==3.7.4.3
     # via importlib-metadata
 wrapt==1.12.1
     # via astroid
-zipp==3.4.0
+zipp==3.4.1
     # via importlib-metadata
 zope.interface==5.2.0
     # via twisted

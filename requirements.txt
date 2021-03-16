@@ -13,7 +13,7 @@ attrs==20.3.0
     #   automat
     #   service-identity
     #   twisted
-autobahn==21.2.1
+autobahn==21.3.1
     # via daphne
 automat==20.2.0
     # via twisted
@@ -21,7 +21,7 @@ cffi==1.14.5
     # via cryptography
 constantly==15.1.0
     # via twisted
-cryptography==3.4.5
+cryptography==3.4.6
     # via
     #   autobahn
     #   pyopenssl
@@ -30,7 +30,7 @@ daphne==3.0.1
     # via -r requirements.in
 django-prometheus==2.1.0
     # via -r requirements.in
-django==3.1.6
+django==3.1.7
     # via -r requirements.in
 hyperlink==21.0.0
     # via
@@ -40,7 +40,7 @@ idna==3.1
     # via
     #   hyperlink
     #   twisted
-incremental==17.5.0
+incremental==21.3.0
     # via twisted
 prometheus-client==0.9.0
     # via django-prometheus
@@ -52,8 +52,6 @@ pyasn1==0.4.8
     #   service-identity
 pycparser==2.20
     # via cffi
-pyhamcrest==2.0.2
-    # via twisted
 pyopenssl==20.0.1
     # via twisted
 pytz==2021.1
@@ -66,9 +64,9 @@ six==1.15.0
     #   pyopenssl
 sqlparse==0.4.1
     # via django
-twisted[tls]==20.3.0
+twisted[tls]==21.2.0
     # via daphne
-txaio==20.12.1
+txaio==21.2.1
     # via autobahn
 zope.interface==5.2.0
     # via twisted
