@@ -21,7 +21,7 @@ cffi==1.14.5
     # via cryptography
 constantly==15.1.0
     # via twisted
-cryptography==3.4.6
+cryptography==3.4.7
     # via
     #   autobahn
     #   pyopenssl
@@ -68,7 +68,7 @@ twisted[tls]==21.2.0
     # via daphne
 txaio==21.2.1
     # via autobahn
-zope.interface==5.2.0
+zope.interface==5.3.0
     # via twisted
 
 # The following packages are considered to be unsafe in a requirements file:
