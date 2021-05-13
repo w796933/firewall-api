@@ -5,16 +5,22 @@ import subprocess
 from subprocess import PIPE
 
 
-def _get_command(transport, start, end):
+logger = logging.getLogger('django.server')
+
+
+def _get_command(transport, start, end, src):
     """ Get the command as an array. """
+    # pylint: disable=unused-argument
+    cmd = 'INPUT'
+    if src:
+        cmd += ' -s {src}/32'
+    cmd += ' -p {transport}'
     if start == end:
-        cmd = 'INPUT -p %s -m %s --dport %i -j ACCEPT' % (
-            transport, transport, start
-        )
-        return cmd.split()
-    cmd = 'INPUT -p %s -m multiport --dports %i:%i -j ACCEPT' % (
-        transport, start, end
-    )
+        cmd += ' -m {transport} --dport {start}'
+    else:
+        cmd += ' -m multiport --dports {start}:{end}'
+    cmd += ' -j ACCEPT'
+    cmd = cmd.format(transport=transport, start=start, end=end, src=src)
     return cmd.split()
 
 
@@ -28,44 +34,35 @@ def _prepend_executable(ip_proto, cmd):
         raise ValueError('Bad IP protocol')
 
 
-def add_input_accept(ip_proto, transport, start, end):
-    """ Run an iptables command to add an INPUT ACCEPT rule for
-    udp/tdp transport access to a port range of start/end. """
-    cmd = _get_command(transport, start, end)
+def add_input_accept(ip_proto, transport, start, end, src=None):
+    """ Add rule to accept traffic from a source address. """
+    cmd = _get_command(transport, start, end, src)
     cmd.insert(0, '-A')
     _prepend_executable(ip_proto, cmd)
+    logger.info(' '.join(cmd))
     try:
         subprocess.run(cmd, check=True, stdout=PIPE, stderr=PIPE)
     except subprocess.CalledProcessError as err:
-        print(err)
-        raise ValueError(err.stderr)
-    logging.getLogger('django.server').info(
-        'Add %s INPUT ACCEPT %s %s:%s', ip_proto, transport, start, end,
-    )
+        raise ValueError from err
 
 
-def check_input_accept(ip_proto, transport, start, end):
-    """ Run an iptables command to check an INPUT ACCEPT rule for
-    udp/tdp transport access to a port range of start/end and return True
-    if the rule exists, or False. """
-    cmd = _get_command(transport, start, end)
+def check_input_accept(ip_proto, transport, start, end, src=None):
+    """ Check input accept rule. """
+    cmd = _get_command(transport, start, end, src)
     cmd.insert(0, '-C')
     _prepend_executable(ip_proto, cmd)
+    logger.info(' '.join(cmd))
     process = subprocess.run(cmd, check=False, stdout=PIPE, stderr=PIPE)
     return process.returncode == 0
 
 
-def delete_input_accept(ip_proto, transport, start, end):
-    """ Run an iptables command to delete an INPUT ACCEPT rule for
-    udp/tdp transport access to a port range of start/end. """
-    cmd = _get_command(transport, start, end)
+def delete_input_accept(ip_proto, transport, start, end, src=None):
+    """ Delete input accept rule. """
+    cmd = _get_command(transport, start, end, src)
     cmd.insert(0, '-D')
     _prepend_executable(ip_proto, cmd)
+    logger.info(' '.join(cmd))
     try:
         subprocess.run(cmd, check=True, stdout=PIPE, stderr=PIPE)
     except subprocess.CalledProcessError as err:
-        print(err)
-        raise ValueError(err.stderr)
-    logging.getLogger('django.server').info(
-        'Delete %s INPUT ACCEPT %s %s:%s', ip_proto, transport, start, end,
-    )
+        raise ValueError from err
