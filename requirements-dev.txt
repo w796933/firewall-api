@@ -32,7 +32,7 @@ daphne==3.0.2
     # via -r requirements-dev.in
 django-prometheus==2.1.0
     # via -r requirements-dev.in
-django==3.2.2
+django==3.2.3
     # via -r requirements-dev.in
 flake8==3.9.2
     # via -r requirements-dev.in
@@ -46,7 +46,7 @@ idna==3.1
     # via
     #   hyperlink
     #   twisted
-importlib-metadata==4.0.1
+importlib-metadata==4.3.0
     # via flake8
 incremental==21.3.0
     # via twisted

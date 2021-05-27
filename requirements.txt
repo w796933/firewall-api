@@ -30,7 +30,7 @@ daphne==3.0.2
     # via -r requirements.in
 django-prometheus==2.1.0
     # via -r requirements.in
-django==3.2.2
+django==3.2.3
     # via -r requirements.in
 hyperlink==21.0.0
     # via
