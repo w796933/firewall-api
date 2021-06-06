@@ -1,7 +1,0 @@
-Django
-daphne
-django-prometheus
-flake8
-freezegun
-pylint
-pylint-django
