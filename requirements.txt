@@ -8,7 +8,7 @@ asgiref==3.4.1
     # via
     #   daphne
     #   django
-astroid==2.6.6
+astroid==2.8.0
     # via pylint
 attrs==21.2.0
     # via
@@ -23,14 +23,14 @@ cffi==1.14.6
     # via cryptography
 constantly==15.1.0
     # via twisted
-cryptography==3.4.7
+cryptography==3.4.8
     # via
     #   autobahn
     #   pyopenssl
     #   service-identity
 daphne==3.0.2
     # via -r requirements.in
-django==3.2.6
+django==3.2.7
     # via -r requirements.in
 django-prometheus==2.1.0
     # via -r requirements.in
@@ -46,7 +46,7 @@ idna==3.2
     # via
     #   hyperlink
     #   twisted
-importlib-metadata==4.6.4
+importlib-metadata==4.8.1
     # via flake8
 incremental==21.3.0
     # via twisted
@@ -58,6 +58,8 @@ mccabe==0.6.1
     # via
     #   flake8
     #   pylint
+platformdirs==2.4.0
+    # via pylint
 prometheus-client==0.11.0
     # via django-prometheus
 pyasn1==0.4.8
@@ -72,7 +74,7 @@ pycparser==2.20
     # via cffi
 pyflakes==2.3.1
     # via flake8
-pylint==2.9.6
+pylint==2.11.1
     # via
     #   -r requirements.in
     #   pylint-django
@@ -95,7 +97,7 @@ six==1.16.0
     #   pyopenssl
     #   python-dateutil
     #   service-identity
-sqlparse==0.4.1
+sqlparse==0.4.2
     # via django
 toml==0.10.2
     # via pylint
@@ -105,15 +107,16 @@ txaio==21.2.1
     # via autobahn
 typed-ast==1.4.3
     # via astroid
-typing-extensions==3.10.0.0
+typing-extensions==3.10.0.2
     # via
     #   asgiref
     #   astroid
     #   importlib-metadata
+    #   pylint
     #   twisted
 wrapt==1.12.1
     # via astroid
-zipp==3.5.0
+zipp==3.5.1
     # via importlib-metadata
 zope.interface==5.4.0
     # via twisted
