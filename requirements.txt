@@ -32,8 +32,6 @@ daphne==3.0.2
     # via -r requirements.in
 django==3.2.8
     # via -r requirements.in
-django-prometheus==2.1.0
-    # via -r requirements.in
 flake8==4.0.1
     # via -r requirements.in
 freezegun==1.1.0
@@ -58,8 +56,6 @@ mccabe==0.6.1
     #   pylint
 platformdirs==2.4.0
     # via pylint
-prometheus-client==0.11.0
-    # via django-prometheus
 pyasn1==0.4.8
     # via
     #   pyasn1-modules
