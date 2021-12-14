@@ -8,14 +8,14 @@ asgiref==3.4.1
     # via
     #   daphne
     #   django
-astroid==2.8.4
+astroid==2.9.0
     # via pylint
 attrs==21.2.0
     # via
     #   automat
     #   service-identity
     #   twisted
-autobahn==21.3.1
+autobahn==21.11.1
     # via daphne
 automat==20.2.0
     # via twisted
@@ -23,14 +23,14 @@ cffi==1.15.0
     # via cryptography
 constantly==15.1.0
     # via twisted
-cryptography==35.0.0
+cryptography==36.0.0
     # via
     #   autobahn
     #   pyopenssl
     #   service-identity
 daphne==3.0.2
     # via -r requirements.in
-django==3.2.8
+django==4.0
     # via -r requirements.in
 flake8==4.0.1
     # via -r requirements.in
@@ -46,7 +46,7 @@ idna==3.3
     #   twisted
 incremental==21.3.0
     # via twisted
-isort==5.9.3
+isort==5.10.1
     # via pylint
 lazy-object-proxy==1.6.0
     # via astroid
@@ -64,11 +64,11 @@ pyasn1-modules==0.2.8
     # via service-identity
 pycodestyle==2.8.0
     # via flake8
-pycparser==2.20
+pycparser==2.21
     # via cffi
 pyflakes==2.4.0
     # via flake8
-pylint==2.11.1
+pylint==2.12.2
     # via
     #   -r requirements.in
     #   pylint-django
@@ -81,8 +81,6 @@ pyopenssl==21.0.0
     # via twisted
 python-dateutil==2.8.2
     # via freezegun
-pytz==2021.3
-    # via django
 service-identity==21.1.0
     # via twisted
 six==1.16.0
@@ -99,12 +97,12 @@ twisted[tls]==21.7.0
     # via daphne
 txaio==21.2.1
     # via autobahn
-typing-extensions==3.10.0.2
+typing-extensions==4.0.1
     # via
     #   astroid
     #   pylint
     #   twisted
-wrapt==1.13.2
+wrapt==1.13.3
     # via astroid
 zope.interface==5.4.0
     # via twisted
